@@ -5,8 +5,8 @@
 """
 
 '''
-Функція розрахунку f(x) = x^3-3x-2e^(-x)
-Функція приймає значення аргумента х та повертає розраховане значення f(x)
+Функція розрахунку f(x) = x^3-3x-2e^(-x).
+Функція приймає значення аргумента х та повертає розраховане значення f(x).
 '''
 def target_function(x):
     import math
@@ -19,7 +19,7 @@ def target_function(x):
 В інших випадках продовжує пошук кореня та ділить відрізок навпіл обираючи потрібний відрізок відповідно до умов:
 1)f(a)*f(c) > 0 --> [c, b]
 2)f(a)*f(c) < 0 --> [a, c]
-Функція повертає корінь, кількість ітерацій та їх список(номер ітерації, значення a, b, c та довжину інтервала)
+Функція повертає корінь, кількість ітерацій та їх список(номер ітерації, значення a, b, c та довжину інтервала).
 '''
 def solve_bisection(target_function, a, b, E):
     res = 0
@@ -51,7 +51,7 @@ def solve_bisection(target_function, a, b, E):
 
 
 '''
-Функція запису результатів знаходження кореня та протоколу ітерацій у файл
+Функція запису результатів знаходження кореня та протоколу ітерацій у файл.
 '''
 def save_results_to_file(res, iter_num, iter_list,):
     with open("results_variant_07.txt", "w", encoding="utf-8") as file:
@@ -67,4 +67,18 @@ def save_results_to_file(res, iter_num, iter_list,):
             file.write(
                 f"{row['iter']:<6} | {row['a']:<10.6f} | {row['b']:<10.6f} | {row['c']:<10.6f} | {row['interval_len']:<10.6f}\n")
 
+'''
+Фнкція входу, у якій задаються вхідні параметри, в консоль виводяться результати,
+запускаються функції solve_bisection та save_results_to_files.
+'''
+def main():
+    a, b = [float(i) for i in input('Введіть межі відрізка в форматі a, b (наприклад: 1.5, 2):').split(',')]
+    E = float(input('Введіть точність  ε (наприклад: 0.0001):'))
+
+    res, iter_num, iter_list = solve_bisection(target_function, a, b, E)
+    print(f'Знайдений корінь рівняння: {res}')
+    print(f'Кількість ітерацій: {iter_num}')
+
+    save_results_to_file(res, iter_num, iter_list)
+    print('Результати та протокол ітерацій збережені та записані у файл results_variant_07.txt')
 
