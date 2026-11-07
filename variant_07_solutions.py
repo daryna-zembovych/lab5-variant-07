@@ -40,7 +40,7 @@ def solve_bisection(target_function, a, b, E):
                 "interval_len": b - a})
             if target_function(a)*target_function(c) > 0:
                 a = c
-            elif target_function(a)*target_function(c) < 0:
+            else:
                 b = c
             res = (a + b)/2
 
